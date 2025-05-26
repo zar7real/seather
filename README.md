@@ -1,143 +1,158 @@
+# ⚡️ `udp_flood.py` – Advanced Network Stress Testing Tool
 
-# 🔥 UDP_FLOOD.PY - Ultimate Network Stress Tool
-
-<div align="center">
+<p align="center">
   <img src="https://i.imgur.com/JKQzXqP.png" width="300">
-  <br>
-  <strong>Advanced UDP Flood Tool with Real-Time Analytics</strong>
-</div>
+</p>
+<p align="center">
+  <b>High-performance UDP flooding tool with stealth options and real-time analytics.</b>
+</p>
 
 ---
 
-## 📊 Benchmark di Potenza (Test su LAN Gigabit)
+## 🚀 Highlights
 
-| Parametro | Valore Base | Modalità Stealth | Max Performance |
-|-----------|------------|----------------|----------------|
-| Pacchetti/sec | 15,000 | 500-1,000 | 85,000+ |
-| Larghezza banda | 110 Mbps | 5-10 Mbps | 620 Mbps |
-| Thread supportati | 1-50 | 1-10 | 100+ |
-| Latency Impact | Alto | Basso | Critico |
-
-![Performance Chart](https://i.imgur.com/Vx6Qk9P.png)
+* 🎯 **Targeted UDP Flooding** with precision control
+* 🧠 **Smart Stealth Mode** (low & slow, randomized behavior)
+* 📡 **Real-Time Metrics**: PPS, bandwidth, latency impact
+* 🧵 **Multi-threaded engine** with dynamic scaling
+* 🛡️ **Protocol Mimicry**: DNS, HTTP, NTP
+* 📘 Clean CLI interface with optional verbose logging
 
 ---
 
-## 🛠 Installazione Completa
+## ⚙️ Installation
 
 ```bash
-# Clona il repository
+# Clone the repo
 git clone https://github.com/zar7real/seather.git
 cd seather
 
-# Installa le dipendenze (richiesto solo una volta)
+# Install dependencies
 pip3 install -r requirements.txt
 
-# Imposta i permessi di esecuzione
+# Make the script executable
 chmod +x udp_flood.py
 
-# Verifica la versione
+# Run version check
 ./udp_flood.py --version
 ```
 
-**Requisiti di sistema:**
-- Python 3.8+
-- Sudo/root per binding porte basse
-- 1 GB RAM (per >50 thread)
+🔧 **Requirements**
+
+* Python 3.8+
+* Root/sudo (for low port access)
+* At least 1GB RAM (for 50+ threads)
 
 ---
 
-## 💻 Comandi Dimostrativi
+## 💣 Usage Examples
 
-### 💣 Test Base (Broadcast LAN)
+### 🌐 Basic LAN Broadcast Flood
+
 ```bash
 python3 udp_flood.py -i 192.168.1.255 -p 53 -s 1024 -t 20
 ```
-**Effetto:** Inonda tutta la rete locale con traffico DNS
 
-### 🕵️ Attacco Stealth (Low & Slow)
+Sends DNS-like flood over local broadcast.
+
+---
+
+### 🕵️ Stealth Mode (Low & Slow)
+
 ```bash
 python3 udp_flood.py -i 10.0.0.5 --stealth --min-delay 0.5 --max-delay 2.0 -t 5
 ```
-**Caratteristiche:**
-- Delay casuale tra 0.5-2 secondi
-- 5 thread a basso profilo
-- Port hopping automatico
 
-### 🚀 Massima Potenza (Single Target)
+✔️ Random delays
+✔️ Auto port hopping
+✔️ Low profile threads
+
+---
+
+### 🚀 Maximum Throughput Attack
+
 ```bash
 python3 udp_flood.py -i target.com -p 80 -s 65507 -t 100 -d 30
 ```
-**Specifiche:**
-- 100 thread concorrenti
-- Pacchetti jumbo (65,507 bytes)
-- Durata 30 secondi
+
+Jumbo packets, 100 threads, 30s attack.
 
 ---
 
-## 📋 Specifiche Tecniche Complete
+## 📊 Performance Benchmarks
 
-### 🔧 Funzionalità Core
-| Componente | Descrizione | Protocolli Supportati |
-|------------|-------------|-----------------------|
-| Engine UDP | Multi-layer flood | IPv4/IPv6 (teorico) |
-| Thread Manager | Pool dinamico | Fino a 500 thread |
-| Traffic Analyzer | Monitoraggio in tempo reale | PPS, Bandwidth, Latency |
+| Metric          | Default  | Stealth Mode | Max Performance |
+| --------------- | -------- | ------------ | --------------- |
+| Packets/sec     | 15,000   | 500–1,000    | 85,000+         |
+| Bandwidth usage | 110 Mbps | 5–10 Mbps    | 620 Mbps        |
+| Thread capacity | 1–50     | 1–10         | 100+            |
+| Latency impact  | 🟠 High  | 🟢 Low       | 🔴 Critical     |
 
-### 🛡️ Modalità Stealth
-1. **Randomizzazione Porte** (1024-65535)
-2. **Delay Variabile** (configurabile)
-3. **Mimicry Protocollare**:
-   - DNS Query
-   - HTTP GET
-   - NTP Request
-4. **IP Spoofing** (solo LAN)
-
-### 📊 Sistema di Monitoraggio
-```mermaid
-graph TD
-    A[Packet Sender] --> B[Performance Tracker]
-    B --> C[Connection Analyzer]
-    C --> D[Quality Logger]
-    D --> E[Real-Time Display]
-```
+<div align="center">
+  <img src="https://i.imgur.com/Vx6Qk9P.png" width="700">
+</div>
 
 ---
 
-## 🧪 Test di Performance
+## 🧠 Stealth Mode Features
 
-### Risultati su Ryzen 9 5950X / 10Gbps LAN
+* 🔀 **Random Port Selection** (1024–65535)
+* 💤 **Variable Delay Injection** (e.g. 0.5–2.0s)
+* 🎭 **Protocol Mimicry**: DNS, HTTP, NTP packet styles
+* 🧬 **IP Spoofing** (if supported, LAN only)
+
+---
+
+## 🧪 Performance Test Example
+
+**System:** Ryzen 9 5950X – 10Gbps LAN
+**Command:**
+
 ```bash
-# Comando test:
 python3 udp_flood.py -i 10.0.0.2 -p 443 -t 150 -d 60 --no-stealth
 ```
 
-| Metric | Valore |
-|--------|-------|
-| Pacchetti Totali | 4,200,000 |
-| Pacchetti/Sec | 70,000 |
-| Larghezza Banda | 580 Mbps |
-| CPU Usage | 78% |
-| RAM Usage | 1.2 GB |
+| Stat          | Value     |
+| ------------- | --------- |
+| Total Packets | 4,200,000 |
+| PPS           | 70,000    |
+| Bandwidth     | 580 Mbps  |
+| CPU Usage     | \~78%     |
+| RAM Usage     | \~1.2 GB  |
 
 ---
 
-## 🚨 Avvertenze Legali
+## 🛠 Architecture Diagram
 
-```diff
-- ATTENZIONE: L'uso non autorizzato è illegale!
-+ Utilizzare solo su reti di proprietà o con permesso scritto
+```mermaid
+graph TD
+    A[UDP Packet Generator] --> B[Thread Manager]
+    B --> C[Payload Dispatcher]
+    C --> D[Analytics Tracker]
+    D --> E[Real-Time Console Output]
 ```
 
-**Protezioni consigliate:**
-1. Configurare rate limiting sul router
-2. Disabilitare UDP su porte non necessarie
-3. Usare firewall con stateful inspection
+---
+
+## ⚠️ Legal Disclaimer
+
+```diff
+- WARNING: Unauthorized usage is strictly prohibited.
++ Use ONLY on devices or networks you own or are authorized to test.
+```
+
+🔐 **Security Recommendations (Defensive)**
+
+1. Enable rate limiting on edge routers
+2. Block unused UDP ports
+3. Use stateful firewall rules (e.g. pf, iptables, nftables)
 
 ---
 
-## 📜 License
+## 📄 License
+
 MIT © [zar7real](https://github.com/zar7real)
 
-<div align="center">
+<p align="center">
   <img src="https://i.imgur.com/N9QmR3S.png" width="200">
-</div>
+</p>
