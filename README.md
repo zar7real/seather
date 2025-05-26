@@ -1,5 +1,5 @@
 
-# <div align="center"><img src="https://i.imgur.com/JKQzXqP.png" width="80"> SEATHER</div>
+# <div align="center"> SEATHER</div>
 
 <div align="center">
   
