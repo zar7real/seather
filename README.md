@@ -77,10 +77,6 @@ Jumbo packets, 100 threads, 30s attack.
 | Thread capacity | 1–50     | 1–10         | 100+            |
 | Latency impact  | 🟠 High  | 🟢 Low       | 🔴 Critical     |
 
-<div align="center">
-  <img src="https://i.imgur.com/Vx6Qk9P.png" width="700">
-</div>
-
 ---
 
 ## 🧠 Stealth Mode Features
@@ -140,8 +136,4 @@ graph TD
 
 ## 📄 License
 
-MIT © [zar7real](https://github.com/zar7real)
-
-<p align="center">
-  <img src="https://i.imgur.com/N9QmR3S.png" width="200">
-</p>
+MIT © [zar7real](https://github.com/zar7real/seather/LICENSE)
