@@ -136,4 +136,4 @@ graph TD
 
 ## 📄 License
 
-MIT © [zar7real](https://github.com/zar7real/seather/LICENSE)
+MIT © [zar7real](https://github.com/zar7real/seather/blob/main/LICENSE)
