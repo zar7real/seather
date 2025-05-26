@@ -16,6 +16,25 @@
 
 ---
 
+🧱 Code Architecture & Design Notes
+
+🔹 General Architecture
+✅ Clear separation of concerns between configuration (argparse, __init__) and execution logic (start, flood, show_stats) — making the codebase modular and easy to maintain.
+✅ Well-implemented multi-threading, including daemon threads for both flooding and real-time statistics display.
+✅ Distinct handling for normal and stealth modes, with isolated, purpose-driven behaviors.
+
+🔹 Aesthetics & UX
+✅ Enhanced CLI aesthetics with ASCII art and ANSI color codes — gives a professional, polished interface.
+✅ Live real-time feedback: packet count, PPS, connection status, elapsed time — useful during simulations or tests.
+
+🔹 Stealth Mode
+✅ Supports port hopping, randomized delays, and protocol mimicry (DNS, HTTP, NTP) — designed to emulate realistic traffic and evade IDS or rate-limiting systems.
+✅ Optional IP spoofing is correctly disabled by default to avoid compatibility issues (especially on Windows).
+
+🔹 Logging & Diagnostics
+✅ Color-coded log messages with severity levels (LOW, MEDIUM, HIGH, CRITICAL) — clear and helpful for debugging.
+✅ Throughput degradation analysis using statistics.mean() on recent PPS values — a feature typically found in advanced test tools.
+
 ## ⚙️ Installation
 
 ```bash
