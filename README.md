@@ -1,8 +1,4 @@
 # ⚡️ `udp_flood.py` – Advanced Network Stress Testing Tool
-
-<p align="center">
-  <img src="https://i.imgur.com/JKQzXqP.png" width="300">
-</p>
 <p align="center">
   <b>High-performance UDP flooding tool with stealth options and real-time analytics.</b>
 </p>
@@ -26,15 +22,8 @@
 # Clone the repo
 git clone https://github.com/zar7real/seather.git
 cd seather
-
-# Install dependencies
-pip3 install -r requirements.txt
-
-# Make the script executable
-chmod +x udp_flood.py
-
-# Run version check
-./udp_flood.py --version
+# Run 
+python3 udp_flood.py -h
 ```
 
 🔧 **Requirements**
@@ -109,7 +98,7 @@ Jumbo packets, 100 threads, 30s attack.
 **Command:**
 
 ```bash
-python3 udp_flood.py -i 10.0.0.2 -p 443 -t 150 -d 60 --no-stealth
+python3 udp_flood.py -i 10.0.0.2 -p 443 -t 150 -d 60 
 ```
 
 | Stat          | Value     |
