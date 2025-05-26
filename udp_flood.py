@@ -1,4 +1,14 @@
 #!/usr/bin/env python3
+"""
+Made by alchemy
+
+This script is a high-performance UDP flooding tool designed for network stress testing.
+It supports normal and stealth modes, multi-threading, real-time statistics, and protocol mimicry.
+
+Before using this tool, please read the license terms carefully at:
+https://github.com/zar7real/seather/blob/main/LICENSE
+"""
+
 import socket
 import random
 import time
