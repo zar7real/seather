@@ -15,10 +15,6 @@
 
 ## 🌟 **Premium Features**
 
-<div align="center">
-  <img src="https://i.imgur.com/Vx6Qk9P.png" width="800" alt="Feature Showcase">
-</div>
-
 <div class="grid-container">
   <div class="grid-item">
     <h3>🚀 Multi-Threaded Flood</h3>
