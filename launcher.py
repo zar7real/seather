@@ -3,7 +3,6 @@ import shlex
 import sys
 import re
 
-# Color codes ANSI per CLI (Windows 10+ o Linux/macOS)
 class Colors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -27,11 +26,9 @@ def ask_ip():
         ip = input("Enter target IP or hostname (default 192.168.1.255): ").strip()
         if ip == "":
             return "192.168.1.255"
-        # semplice regex IP v4 check o hostname
         ip_regex = re.compile(r"^(\d{1,3}\.){3}\d{1,3}$")
         hostname_regex = re.compile(r"^[a-zA-Z0-9.-]+$")
         if ip_regex.match(ip) or hostname_regex.match(ip):
-            # ulteriore check range ip?
             parts = ip.split('.')
             if len(parts) == 4 and all(0 <= int(p) <= 255 for p in parts):
                 return ip
