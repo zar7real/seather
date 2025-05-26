@@ -45,10 +45,6 @@ pip install -r requirements.txt --quiet --no-warn-script-location
 python seather.py --premium
 ```
 
-<div align="center">
-  <img src="https://i.imgur.com/L9QmR3S.gif" width="600" alt="Installation Demo">
-</div>
-
 ---
 
 ## 💎 **Usage Showcase**
@@ -64,9 +60,6 @@ python seather.py -i targets.txt -p 53,80,443 -s 4096 --stealth
 python seather.py -i 10.0.0.1 -d 0 --analytics
 ```
 
-<div align="center">
-  <img src="https://i.imgur.com/M9QmR3S.png" width="700" alt="CLI Screenshot">
-</div>
 
 ---
 
@@ -99,10 +92,6 @@ graph TD
 
 ## ⚠ **Elite Security Notice**
 
-<div align="center">
-  <img src="https://i.imgur.com/P9QmR3S.png" width="80">
-</div>
-
 > **LEGAL NOTICE**: This tool is for **authorized testing only**. Always obtain proper permissions before conducting any network assessment.
 
 ---
@@ -120,8 +109,6 @@ contact@zar7real.tech | @zar7real | GitHub Discussions
 <div align="center">
 
 **⭐ Join our elite users - Star the repo! ⭐**
-
-<img src="https://i.imgur.com/N9QmR3S.png" width="300">
 <br>
 <sub>Crafted with precision by <a href="https://github.com/zar7real">zar7real</a></sub>
 
