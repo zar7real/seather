@@ -38,11 +38,8 @@
 # Clone with custom aesthetic
 git clone https://github.com/zar7real/seather.git && cd seather
 
-# Install with style
-pip install -r requirements.txt --quiet --no-warn-script-location
-
-# Run in premium mode
-python seather.py --premium
+# Run
+python3 udp_flood.py -h
 ```
 
 ---
@@ -51,13 +48,10 @@ python seather.py --premium
 
 ```bash
 # Standard assessment (30 seconds)
-python seather.py -i 192.168.1.1 -p 80 -t 10 --visual
-
-# Enterprise target mode
-python seather.py -i targets.txt -p 53,80,443 -s 4096 --stealth
+python3 udp_flood.py -i 192.168.1.1 -p 80 -t 10 
 
 # Continuous evaluation (CTRL+C to stop)
-python seather.py -i 10.0.0.1 -d 0 --analytics
+python3 udp_flood.py -i 10.0.0.1 -d 0 
 ```
 
 
@@ -101,7 +95,7 @@ graph TD
 For enterprise support and custom integrations:
 
 ```bash
-contact@zar7real.tech | @zar7real | GitHub Discussions
+@zar7real | GitHub Discussions
 ```
 
 ---
