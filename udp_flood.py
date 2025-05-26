@@ -53,8 +53,9 @@ class UDPFlooder:
         print(" ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝")
         print("\033[0m")
         mode = "\033[32mSTEALTH\033[0m" if self.stealth else "\033[31mNORMAL\033[0m"
-        print(f"\033[36mOPERATION ID: {self.operation_id} | MODE: {mode} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\033[0m")
+        print(f"\033[36mOPERATION ID: {self.operation_id} | MODE: {mode} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} \033[31m| Made by alchemy\033[0m")
         print("\033[90m" + "-" * 80 + "\033[0m")
+
         
     def flood(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
